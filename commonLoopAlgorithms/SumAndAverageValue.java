@@ -2,7 +2,13 @@ import java.util.Scanner;
 
 public class SumAndAverageValue
 {
-
+    private String name;
+    private int days;
+    public Event(String nameEvent, int numDays)
+    {
+        name = nameEvent;
+        days = numDays;
+    }
     /**
      * Default constructor for objects of class SumAndAverageValue
      */
