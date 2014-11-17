@@ -5,6 +5,8 @@ import info.gridworld.grid.Grid;
 import info.gridworld.grid.BoundedGrid;
 import info.gridworld.grid.Location;
 import java.util.ArrayList;
+import java.util.List;
+import java.lang.Object;
 /**
  * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
  * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
@@ -23,7 +25,7 @@ public class GameOfLife
     
     // constants for the location of the three cells initially alive
     private final int X1 = 29, Y1 = 31;
-    private final int X2 = 30, Y2 = 31;
+    private final int X2 = 31, Y2 = 30;
     private final int X3 = 31, Y3 = 31;
     private final int X4 = 30, Y4 = 30;
     private final int X5 = 29, Y5 = 29;
@@ -85,7 +87,7 @@ public class GameOfLife
         grid.put(loc5, rock5);      
         
         Rock rock6 = new Rock();
-        Location loc6 = new Location(X5, Y5);
+        Location loc6 = new Location(X6, Y6);
         grid.put(loc6, rock6);          
     }
 
@@ -109,6 +111,7 @@ public class GameOfLife
         
         // insert magic here...
         BoundedGrid<Actor> newGrid = new BoundedGrid<Actor>(ROWS, COLS);
+        world = new ActorWorld(newGrid);
         for(int index = 1; index <= ROWS; index++ )
         { 
             for(int i = 1; i <= COLS; i++)
@@ -116,17 +119,30 @@ public class GameOfLife
                 Location loc = new Location(index, i);
                 ArrayList<Actor> list = oldGrid.getNeighbors(loc);
                 int num = list.size();
-                if(num == 3 || num ==2)
+                if(oldGrid.get(loc) != null)
                 {
-                    Rock rock = new Rock();
-                    newGrid.put(loc, rock);
+                    if(num == 3 || num ==2)
+                    {
+                        Rock rock = new Rock();
+                        newGrid.put(loc, rock);
+                    }
+                }
+                else
+                {
+                    if(num == 3)
+                    {
+                        Rock rock = new Rock();
+                        newGrid.put(loc,rock);
+                    }
                 }
             }
             
         }
             
             
-        
+        world = new ActorWorld(newGrid);
+        // display the newly constructed and populated world
+        world.show();
         
     }
     
