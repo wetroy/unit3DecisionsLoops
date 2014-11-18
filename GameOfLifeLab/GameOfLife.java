@@ -99,7 +99,7 @@ public class GameOfLife
      * @post    the world has been populated with a new grid containing the next generation
      * 
      */
-    private void createNextGeneration()
+    public void createNextGeneration()
     {
         /** You will need to read the documentation for the World, Grid, and Location classes
          *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
@@ -112,9 +112,9 @@ public class GameOfLife
         // insert magic here...
         BoundedGrid<Actor> newGrid = new BoundedGrid<Actor>(ROWS, COLS);
         world = new ActorWorld(newGrid);
-        for(int index = 1; index <= ROWS; index++ )
+        for(int index = 0; index < ROWS; index++ )
         { 
-            for(int i = 1; i <= COLS; i++)
+            for(int i = 0; i < COLS; i++)
             {
                 Location loc = new Location(index, i);
                 ArrayList<Actor> list = oldGrid.getNeighbors(loc);
